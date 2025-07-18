@@ -1,0 +1,128 @@
+Algorithm DistinctSum
+
+// This algorithm calculates the sum of all elements that are present 
+// in only one of the two sets (distinct elements).
+
+Variables
+    Set1, Set2 : array[1..100] of integer
+    i, j, n1, n2, sum : integer
+    isCommon : boolean
+
+Begin
+    Write("Enter number of elements in Set1: ")
+    Read(n1)
+    Write("Enter elements of Set1:")
+    For i from 1 to n1 do
+        Read(Set1[i])
+    EndFor
+
+    Write("Enter number of elements in Set2: ")
+    Read(n2)
+    Write("Enter elements of Set2:")
+    For i from 1 to n2 do
+        Read(Set2[i])
+    EndFor
+
+    sum ← 0
+
+    // Check elements in Set1 not in Set2
+    For i from 1 to n1 do
+        isCommon ← false
+        For j from 1 to n2 do
+            If Set1[i] = Set2[j] Then
+                isCommon ← true
+            EndIf
+        EndFor
+        If isCommon = false Then
+            sum ← sum + Set1[i]
+        EndIf
+    EndFor
+
+    // Check elements in Set2 not in Set1
+    For i from 1 to n2 do
+        isCommon ← false
+        For j from 1 to n1 do
+            If Set2[i] = Set1[j] Then
+                isCommon ← true
+            EndIf
+        EndFor
+        If isCommon = false Then
+            sum ← sum + Set2[i]
+        EndIf
+    EndFor
+
+    Write("Sum of distinct elements is: ", sum)
+
+End
+
+
+
+
+
+Procedure dot_product(v1 : array of real, v2 : array of real, n : integer, ps : out real)
+Var
+    i : integer
+Begin
+    ps ← 0
+    For i from 1 to n do
+        ps ← ps + v1[i] * v2[i]
+    EndFor
+EndProcedure
+
+
+
+
+Algorithm CheckOrthogonalVectors
+
+// This algorithm reads n pairs of vectors and checks if they are orthogonal
+// using the dot_product procedure.
+
+Variables
+    n, i, size : integer
+    v1, v2 : array[1..100] of real
+    ps : real
+
+Begin
+    Write("Enter the size of the vectors: ")
+    Read(size)
+
+    Write("Enter number of vector pairs to check: ")
+    Read(n)
+
+    For i from 1 to n do
+        Write("Enter vector v1 for pair ", i, ":")
+        For j from 1 to size do
+            Read(v1[j])
+        EndFor
+
+        Write("Enter vector v2 for pair ", i, ":")
+        For j from 1 to size do
+            Read(v2[j])
+        EndFor
+
+        Call dot_product(v1, v2, size, ps)
+
+        If ps = 0 Then
+            Write("Vectors ", i, " are orthogonal.")
+        Else
+            Write("Vectors ", i, " are not orthogonal.")
+        EndIf
+    EndFor
+
+End
+
+
+Function dot_product(v1 : array of real, v2 : array of real, n : integer) : real
+Var
+    i : integer
+    result : real
+Begin
+    result ← 0
+    For i from 1 to n do
+        result ← result + v1[i] * v2[i]
+    EndFor
+    Return result
+EndFunction
+
+
+ps ← dot_product(v1, v2, size)
