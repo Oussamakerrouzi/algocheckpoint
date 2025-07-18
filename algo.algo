@@ -1,0 +1,39 @@
+Algorithm AnalyzeSentence
+// This algorithm reads a sentence character by character until the final period,
+// and calculates: the total length, the number of words, and the number of vowels.
+
+Begin
+    // Declare variables
+    Character : character
+    Length, WordCount, VowelCount : integer
+
+    // Initialize counters
+    Length ← 0
+    WordCount ← 1
+    VowelCount ← 0
+
+    Write("Enter a sentence ending with a period: ")
+
+    Repeat
+        Read(Character)
+        Length ← Length + 1
+
+        // Check for vowels (both lowercase and uppercase)
+        If Character = 'a' or Character = 'e' or Character = 'i' or Character = 'o' or Character = 'u' or
+           Character = 'A' or Character = 'E' or Character = 'I' or Character = 'O' or Character = 'U' Then
+            VowelCount ← VowelCount + 1
+        EndIf
+
+        // Check for word separation (space)
+        If Character = ' ' Then
+            WordCount ← WordCount + 1
+        EndIf
+
+    Until Character = '.'
+
+    // Output the results
+    Write("Sentence length: ", Length)
+    Write("Number of words: ", WordCount)
+    Write("Number of vowels: ", VowelCount)
+
+End
